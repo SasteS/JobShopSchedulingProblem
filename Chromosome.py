@@ -2,11 +2,14 @@ import random
 #import ParameterFns
 
 class Chromosome():
-    def __init__(self, jobs, machines):
-        self.chromosome = generate_chromosome(jobs, machines)
+    def __init__(self, jobs, machines, chromosome):
+        if len(chromosome) == 0:
+            self.chromosome = generate_chromosome(jobs, machines)
+        else:
+            self.chromosome = chromosome
 
     def __str__(self):
-        return str(self.chromosome)
+        return "iz klase : " + str(self.chromosome)
 
 def generate_chromosome(jobs_dict, machines_dict):
     """

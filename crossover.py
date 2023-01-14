@@ -1,20 +1,6 @@
 import random
 from constants import *
 
-# MACHINES = {
-#     "M1" : {"J1" : [5, 7], "J2" : [4, 2]},
-#     "M2" : {"J1" : [1, 3], "J2" : [6, 8]},
-#     "M3" : {"J1" : [9, 0], "J2" : [11, 12]}
-# }
-
-# JOBS = ["J1", "J2"]
-
-# CHROMOSOMES = [[[["J2","J1","J1","J2"],["M2","M3","M2","M1"]], 
-#                 [["J1","J2","J1","J2"],["M1","M3","M2","M3"]]],
-
-#                 [[["J2","J2","J1","J1"],["M2","M3","M2","M1"]], 
-#                 [["J1","J2","J2","J1"],["M3","M3","M1","M1"]]]]
-
 def crossover(pairs):
 
     """
@@ -58,7 +44,7 @@ def crossover(pairs):
                             while proces_duration != 0:
                                 new_m = random.choice(MACHINES.keys())
                                 proces_duration = MACHINES[machine][job][o]
-                            child1[1][i] = new_m
+                                child1[1][i] = new_m
 
         for j in range(len(JOBS_KEYS)): #za 2. dete
                 o = 0
@@ -73,7 +59,7 @@ def crossover(pairs):
                             while proces_duration != 0:
                                 new_m = random.choice(MACHINES.keys())
                                 proces_duration = MACHINES[machine][job][o]
-                            child1[1][i] = new_m
+                                child2[1][i] = new_m
 
         #dodavanje dece u listu deca
         #dodavanje roditelja u listu roditelja
@@ -82,13 +68,3 @@ def crossover(pairs):
         parents.append(mom)
         parents.append(dad)
     return children, parents
-
-# if __name__ == "__main__":
-#     deca, roditelji = crossover(CHROMOSOMES)
-#     for r in roditelji:
-#         print(r)
-
-#     print("DECA ===============================")
-
-#     for d in deca:
-#         print(d)

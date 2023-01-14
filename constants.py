@@ -1,12 +1,6 @@
 from ParameterFns import *
 
-#moze da se napravi random
-# jobs = ParameterFns.generate_Jobs(2, 3)
-# machines = ParameterFns.generate_Machines(3, jobs, 10)
-
-# chromosome_list = ParameterFns.generate_chromosome_list(4, jobs, machines)
-
-JOBS = generate_Jobs(2, 3)
+JOBS = generate_Jobs(6, 2)
 JOBS_KEYS = list(JOBS.keys())
-MACHINES = generate_Machines(3, JOBS, 10)
-CHROMOSOMES = generate_chromosome_list(4, JOBS, MACHINES)
+MACHINES = generate_Machines(5, JOBS, 20)
+CHROMOSOMES = generate_chromosome_list(4, JOBS, MACHINES, [])

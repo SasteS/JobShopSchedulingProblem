@@ -1,4 +1,4 @@
-def fitness_function(chromosome, machines, jobs):
+def fitness_function(chromosome, machines, jobs, is_elitis):
     """
     chromosome - predstavlja jednu jedinku tojest jedan hromozom
     on je u formatu [[][]] lista koja sadrzi u sebi 2 liste
@@ -17,15 +17,13 @@ def fitness_function(chromosome, machines, jobs):
 
     return vrednost funkcije je najgore/najduze vreme izvrsavanja svih masina
 
-    (To verovatno nije dobra implementacija al jbg ne znam drugacije
-        treba da se kroz hromozom prolazi samo jednom zbog vremena cekanja al jbg
-        za sad je ovako, posle mozda promenimo
-        i ovo ce da izracuna nesto sto je priblizno okej
-    )
-
     """
-    jobs_c = chromosome.chromosome[0]
-    machines_c = chromosome.chromosome[1]
+    if isinstance(chromosome, list):
+        jobs_c = chromosome[0]
+        machines_c = chromosome[1]
+    else:
+        jobs_c = chromosome.chromosome[0]
+        machines_c = chromosome.chromosome[1]
 
     times = {}
 

@@ -31,17 +31,21 @@ def generate_Machines(num_of_machines, jobs, machine_times_max):
         machines.update(temp_machine)
     return machines
 
-def generate_chromosome_list(num_of_chromosomes, jobs, machines):
+def generate_chromosome_list(num_of_chromosomes, jobs, machines, chromosomes):
     chromosome_list = []
-    for i in range(num_of_chromosomes):
-        chromosome_list.append(Chromosome(jobs, machines))
+    if len(chromosomes) != 0:
+        for chromosome in chromosomes:
+            chromosome_list.append(Chromosome(jobs, machines, chromosome))
+    else:
+        for i in range(num_of_chromosomes):    
+            chromosome_list.append(Chromosome(jobs, machines, []))
 
     return chromosome_list
 
 def get_chromosome_rang_dict(chromosomes_list, jobs, machines):
     data = {}
     for chromosome in chromosomes_list:
-        data.update({chromosome : fitness_function(chromosome, machines, jobs)})
+        data.update({chromosome : fitness_function(chromosome, machines, jobs, False)})
 
     #print("before sort : " + str(data))
     data_sorted = sorted(data.items(), key=lambda x:x[1])
@@ -50,7 +54,8 @@ def get_chromosome_rang_dict(chromosomes_list, jobs, machines):
     for item in data_sorted:
         data.update({item[0] : item[1]})
     #print("after sort : " + str(data))
-    return data
+    best_unit = list(data)[-1]
+    return data, best_unit
 
 def rulette_selection(sorted_chromosome_dict):
     for key in sorted_chromosome_dict.keys():
@@ -76,10 +81,3 @@ def rulette_selection(sorted_chromosome_dict):
         i += 1
 
     return list_of_pairs
-
-# list = generate_chromosome_list(3)
-# print(list)
-
-# jobs = Generate_Jobs(5, 5)
-# print("jobs = " + str(jobs))
-# print("machines = " + str(Generate_Machines(5, jobs, 10)))
